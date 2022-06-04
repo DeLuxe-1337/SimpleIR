@@ -35,7 +35,10 @@ invoke.CreateReturn();
 
 module.Finish();
 ```
-Result from "Hello world" example:
+	
+<details>
+<summary>Result from "Hello world" example</summary>
+<br>
 
 ![image](https://user-images.githubusercontent.com/74394136/172027172-646800dc-1388-4eca-9abc-375a805c4058.png)
 
@@ -81,5 +84,5 @@ L_SimpleIR_String:                      # @SimpleIR_String
 	.asciz	"Hello, world\n"
 
 ```
-	
+</details>
 </details>
