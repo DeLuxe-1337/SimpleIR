@@ -8,19 +8,24 @@ I will make a documentation as I progress with this fun little project.
 Hello world example:
 
 ```csharp
-Module module = new Module("HelloWorld");
+var module = new Module("HelloWorld");
 var IR = module.IR;
 
 var main = IR.CreateFunction("main", IR.GetDataType(DataTypeKind.Void));
-var printf = IR.CreateFunction("printf", IR.GetDataType(DataTypeKind.Number), IR.GetDataType(DataTypeKind.String));
+var printf = IR.CreateFunction("printf", IR.GetDataType(DataTypeKind.Number),
+    IR.GetDataType(DataTypeKind.String));
 
 var invoke = IR.CreateBlock("invoke");
 main.InsertBlock(invoke);
 
-invoke.CreateCall(printf, new List<SimpleType>()
+invoke.CreateCall(printf, new List<SimpleType>
 {
     IR.CreateValue("Hello, world\n", DataTypeKind.String)
 });
+
+//prevent console from closing
+var gets = IR.CreateFunction("gets", IR.GetDataType(DataTypeKind.String));
+invoke.CreateCall(gets, new List<SimpleType>());
 
 invoke.CreateReturn();
 
