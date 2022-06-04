@@ -5,10 +5,10 @@ namespace SimpleIR.SimpleTypes.Statement
 {
     internal class Function : SimpleStatementType
     {
-        public List<SimpleType> Arguments;
         private readonly List<Block> Body = new List<Block>();
-        public LLVMValueRef function;
         private readonly Module module;
+        public List<SimpleType> Arguments;
+        public LLVMValueRef function;
         public string Name;
         public SimpleType ReturnType;
 

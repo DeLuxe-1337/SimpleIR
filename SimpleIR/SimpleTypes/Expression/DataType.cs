@@ -1,4 +1,5 @@
-﻿using LLVMSharp;
+﻿using System;
+using LLVMSharp;
 
 namespace SimpleIR.SimpleTypes.Expression
 {
@@ -6,7 +7,17 @@ namespace SimpleIR.SimpleTypes.Expression
     {
         Void,
         Number,
-        String
+        String,
+        Boolean,
+
+        Int32,
+        Float,
+        FP128,
+        Int16,
+        Int64,
+        Int8,
+        Int1,
+        IntPtr
     }
 
     internal class DataType : SimpleType
@@ -22,6 +33,36 @@ namespace SimpleIR.SimpleTypes.Expression
         {
             switch (Kind)
             {
+                case DataTypeKind.IntPtr:
+                {
+                    throw new NotImplementedException("Ptrs not yet implemented.");
+                }
+                case DataTypeKind.Int64:
+                {
+                    return LLVM.Int64Type();
+                }
+                case DataTypeKind.Int16:
+                {
+                    return LLVM.Int16Type();
+                }
+                case DataTypeKind.Float:
+                {
+                    return LLVM.FloatType();
+                }
+                case DataTypeKind.FP128:
+                {
+                    return LLVM.FP128Type();
+                }
+                case DataTypeKind.Int8:
+                {
+                    return LLVM.FP128Type();
+                }
+                case DataTypeKind.Int1:
+                case DataTypeKind.Boolean:
+                {
+                    return LLVM.Int1Type();
+                }
+                case DataTypeKind.Int32:
                 case DataTypeKind.Number:
                 {
                     return LLVM.Int32Type();

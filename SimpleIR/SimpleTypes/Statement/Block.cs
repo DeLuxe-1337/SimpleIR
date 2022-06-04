@@ -6,9 +6,9 @@ namespace SimpleIR.SimpleTypes.Statement
 {
     internal class Block : SimpleStatementType
     {
+        private readonly Module module;
         public LLVMValueRef _block;
         public LLVMValueRef _ParentFunction;
-        private readonly Module module;
         public string Name;
 
         public Block(string name, Module module)

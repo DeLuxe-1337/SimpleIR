@@ -1,4 +1,5 @@
-﻿using LLVMSharp;
+﻿using System;
+using LLVMSharp;
 
 namespace SimpleIR.SimpleTypes.Expression
 {
@@ -17,6 +18,36 @@ namespace SimpleIR.SimpleTypes.Expression
         {
             switch (Kind)
             {
+                case DataTypeKind.IntPtr:
+                {
+                    throw new NotImplementedException("Ptrs not yet implemented.");
+                }
+                case DataTypeKind.Int64:
+                {
+                    return LLVM.ConstInt(LLVM.Int64Type(), ulong.Parse(Literal.ToString()), new LLVMBool());
+                }
+                case DataTypeKind.Int16:
+                {
+                    return LLVM.ConstInt(LLVM.Int16Type(), ulong.Parse(Literal.ToString()), new LLVMBool());
+                }
+                case DataTypeKind.Float:
+                {
+                    return LLVM.ConstInt(LLVM.FloatType(), ulong.Parse(Literal.ToString()), new LLVMBool());
+                }
+                case DataTypeKind.FP128:
+                {
+                    return LLVM.ConstInt(LLVM.FP128Type(), ulong.Parse(Literal.ToString()), new LLVMBool());
+                }
+                case DataTypeKind.Int8:
+                {
+                    return LLVM.ConstInt(LLVM.Int8Type(), ulong.Parse(Literal.ToString()), new LLVMBool());
+                }
+                case DataTypeKind.Int1:
+                case DataTypeKind.Boolean:
+                {
+                    return LLVM.ConstInt(LLVM.Int1Type(), ulong.Parse(Literal.ToString()), new LLVMBool());
+                }
+                case DataTypeKind.Int32:
                 case DataTypeKind.Number:
                 {
                     return LLVM.ConstInt(LLVM.Int32Type(), ulong.Parse(Literal.ToString()), new LLVMBool());
