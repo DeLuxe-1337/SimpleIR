@@ -7,7 +7,9 @@ I will make a documentation as I progress with this fun little project.
 
 SimpleIR uses C# and is built upon LLVM.
             
-Hello world example:
+<details>
+<summary>Hello world example</summary>
+<br>
 
 ```csharp
 var module = new Module("HelloWorld");
@@ -79,3 +81,5 @@ L_SimpleIR_String:                      # @SimpleIR_String
 	.asciz	"Hello, world\n"
 
 ```
+	
+</details>
