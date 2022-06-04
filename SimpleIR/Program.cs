@@ -11,12 +11,11 @@ namespace SimpleIR
     {
         static void Main(string[] args)
         {
-            Module module = new Module("myModule");
+            Module module = new Module("HelloWorld");
             var IR = module.IR;
 
             var main = IR.CreateFunction("main", IR.GetDataType(DataTypeKind.Void));
             var printf = IR.CreateFunction("printf", IR.GetDataType(DataTypeKind.Number), IR.GetDataType(DataTypeKind.String));
-            var gets = IR.CreateFunction("gets", IR.GetDataType(DataTypeKind.String));
 
             var invoke = IR.CreateBlock("invoke");
             main.InsertBlock(invoke);
@@ -25,14 +24,6 @@ namespace SimpleIR
             {
                 IR.CreateValue("Hello, world\n", DataTypeKind.String)
             });
-
-            var result = invoke.CreateCall(gets, new List<SimpleType>());
-            invoke.CreateCall(printf, new List<SimpleType>()
-            {
-                IR.CreateValue(result, DataTypeKind.String)
-            });
-
-            invoke.CreateCall(gets, new List<SimpleType>());
 
             invoke.CreateReturn();
 

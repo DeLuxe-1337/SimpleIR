@@ -35,6 +35,8 @@ namespace SimpleIR.LLVMBackend
             LLVM.InitializeX86AsmParser();
             LLVM.InitializeX86AsmPrinter();
 
+            LLVM.SetTarget(module, "i686-pc-windows-gnu");
+
             LLVMMCJITCompilerOptions options = new LLVMMCJITCompilerOptions { NoFramePointerElim = 1 };
             LLVM.InitializeMCJITCompilerOptions(options);
             if (LLVM.CreateExecutionEngineForModule(out var engine, module, out var errorMessage).Value == 1)
@@ -52,9 +54,6 @@ namespace SimpleIR.LLVMBackend
 
             //Write to LL file
             LLVM.PrintModuleToFile(module, "simple_ir_output.ll", out err);
-
-            File.WriteAllText("simple_ir_output.ll",
-                "target triple = \"i686-pc-windows-gnu\"\n" + File.ReadAllText("simple_ir_output.ll"));
         }
 
         public void CompileWithWSL()
