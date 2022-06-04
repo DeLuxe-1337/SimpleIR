@@ -26,3 +26,5 @@ invoke.CreateReturn();
 
 module.Finish();
 ```
+
+SimpleIR uses C# and is built upon LLVM.
