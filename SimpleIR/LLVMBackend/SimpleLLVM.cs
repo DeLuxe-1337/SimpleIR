@@ -14,7 +14,7 @@ namespace SimpleIR.LLVMBackend
         public LLVMModuleRef module;
         public LLVMBuilderRef builder;
 
-        public void Initialize(string name)
+        public void Initialize(string name, string target_triple)
         {
             module = LLVM.ModuleCreateWithName(name);
             builder = LLVM.CreateBuilder();
@@ -35,7 +35,7 @@ namespace SimpleIR.LLVMBackend
             LLVM.InitializeX86AsmParser();
             LLVM.InitializeX86AsmPrinter();
 
-            LLVM.SetTarget(module, "i686-pc-windows-gnu");
+            LLVM.SetTarget(module, target_triple);
 
             LLVMMCJITCompilerOptions options = new LLVMMCJITCompilerOptions { NoFramePointerElim = 1 };
             LLVM.InitializeMCJITCompilerOptions(options);
