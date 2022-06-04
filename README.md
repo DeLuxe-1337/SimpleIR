@@ -41,7 +41,7 @@ Compiled PE "main" function dissasembled:
 
 ![image](https://user-images.githubusercontent.com/74394136/172027215-c8a329ec-5145-4d73-9171-14f2abfccbbf.png)
 
-Assembly Result:
+Assembly Result: (Much more that you can target the IR to.)
 ```assembly
 	.text
 	.def	 @feat.00;
