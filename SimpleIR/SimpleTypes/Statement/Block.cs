@@ -1,32 +1,35 @@
 ﻿using System.Collections.Generic;
 using LLVMSharp;
+using SimpleIR.SimpleTypes.Expression;
 
 namespace SimpleIR.SimpleTypes.Statement
 {
-    class Block : SimpleStatementType
+    internal class Block : SimpleStatementType
     {
-        public string Name;
-        public LLVMValueRef _ParentFunction;
-        private Module module;
         public LLVMValueRef _block;
+        public LLVMValueRef _ParentFunction;
+        private readonly Module module;
+        public string Name;
+
         public Block(string name, Module module)
         {
-            this.Name = name;
+            Name = name;
             this.module = module;
-        }
-        public void SetName(string name)
-        {
-            this.Name = name;
         }
 
         public object Emit(Module module)
         {
-            var block = LLVM.AppendBasicBlock(_ParentFunction, this.Name);
+            var block = LLVM.AppendBasicBlock(_ParentFunction, Name);
             LLVM.PositionBuilderAtEnd(module.llvm_backend.builder, block);
 
-            this._block = block;
+            _block = block;
 
             return block;
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
         }
 
         public void CreateReturn(SimpleType type = null)
@@ -40,12 +43,10 @@ namespace SimpleIR.SimpleTypes.Statement
         public Call CreateCall(Function function, List<SimpleType> arguments)
         {
             var args = new List<LLVMValueRef>();
-            foreach (var argument in arguments)
-            {
-                args.Add((LLVMValueRef)argument.Emit(module));
-            }
+            foreach (var argument in arguments) args.Add((LLVMValueRef)argument.Emit(module));
 
-            var result = LLVM.BuildCall(module.llvm_backend.builder, function.function, args.ToArray(), "call_to_" + function.Name);
+            var result = LLVM.BuildCall(module.llvm_backend.builder, function.function, args.ToArray(),
+                "call_to_" + function.Name);
             return new Call(result);
         }
     }

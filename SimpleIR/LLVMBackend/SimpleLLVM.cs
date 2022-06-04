@@ -1,25 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LLVMSharp;
 
 namespace SimpleIR.LLVMBackend
 {
-    class SimpleLLVM
+    internal class SimpleLLVM
     {
-        public LLVMModuleRef module;
         public LLVMBuilderRef builder;
+        public LLVMModuleRef module;
 
         public void Initialize(string name, string target_triple)
         {
             module = LLVM.ModuleCreateWithName(name);
             builder = LLVM.CreateBuilder();
 
-            LLVMPassManagerRef passManager = LLVM.CreateFunctionPassManagerForModule(module);
+            var passManager = LLVM.CreateFunctionPassManagerForModule(module);
 
             LLVM.AddInstructionCombiningPass(passManager);
             LLVM.AddReassociatePass(passManager);
@@ -37,17 +32,17 @@ namespace SimpleIR.LLVMBackend
 
             LLVM.SetTarget(module, target_triple);
 
-            LLVMMCJITCompilerOptions options = new LLVMMCJITCompilerOptions { NoFramePointerElim = 1 };
+            var options = new LLVMMCJITCompilerOptions { NoFramePointerElim = 1 };
             LLVM.InitializeMCJITCompilerOptions(options);
             if (LLVM.CreateExecutionEngineForModule(out var engine, module, out var errorMessage).Value == 1)
             {
                 Console.WriteLine(errorMessage);
-                return;
             }
         }
+
         public void Finish()
         {
-            string err = String.Empty;
+            var err = string.Empty;
             LLVM.VerifyModule(module, LLVMVerifierFailureAction.LLVMPrintMessageAction, out err);
 
             LLVM.DumpModule(module);

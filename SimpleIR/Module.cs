@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SimpleIR.LLVMBackend;
+﻿using SimpleIR.LLVMBackend;
 
 namespace SimpleIR
 {
-    class Module
+    internal class Module
     {
-        public string Name;
         public IR IR;
         public SimpleLLVM llvm_backend;
+        public string Name;
+
         public Module(string name, string target_triple = "i686-pc-windows-gnu")
         {
-            this.Name = name;
+            Name = name;
             IR = new IR(this);
 
             llvm_backend = new SimpleLLVM();

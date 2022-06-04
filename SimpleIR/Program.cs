@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimpleIR.SimpleTypes;
+using SimpleIR.SimpleTypes.Expression;
 
 namespace SimpleIR
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Module module = new Module("HelloWorld");
+            var module = new Module("HelloWorld");
             var IR = module.IR;
 
             var main = IR.CreateFunction("main", IR.GetDataType(DataTypeKind.Void));
-            var printf = IR.CreateFunction("printf", IR.GetDataType(DataTypeKind.Number), IR.GetDataType(DataTypeKind.String));
+            var printf = IR.CreateFunction("printf", IR.GetDataType(DataTypeKind.Number),
+                IR.GetDataType(DataTypeKind.String));
 
             var invoke = IR.CreateBlock("invoke");
             main.InsertBlock(invoke);
 
-            invoke.CreateCall(printf, new List<SimpleType>()
+            invoke.CreateCall(printf, new List<SimpleType>
             {
                 IR.CreateValue("Hello, world\n", DataTypeKind.String)
             });

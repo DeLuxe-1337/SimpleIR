@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
-using LLVMSharp;
+﻿using LLVMSharp;
 
-namespace SimpleIR.SimpleTypes
+namespace SimpleIR.SimpleTypes.Expression
 {
-    enum DataTypeKind
+    internal enum DataTypeKind
     {
-        Void, Number, String
+        Void,
+        Number,
+        String
     }
-    class DataType : SimpleType
+
+    internal class DataType : SimpleType
     {
         public DataTypeKind Kind;
+
+        public DataType(DataTypeKind kind)
+        {
+            Kind = kind;
+        }
+
         public object Emit(Module module)
         {
             switch (Kind)
@@ -34,11 +37,6 @@ namespace SimpleIR.SimpleTypes
             }
 
             return null;
-        }
-
-        public DataType(DataTypeKind kind)
-        {
-            this.Kind = kind;
         }
     }
 }

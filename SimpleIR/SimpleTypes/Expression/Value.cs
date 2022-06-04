@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LLVMSharp;
+﻿using LLVMSharp;
 
-namespace SimpleIR.SimpleTypes
+namespace SimpleIR.SimpleTypes.Expression
 {
-    class Value : SimpleType
+    internal class Value : SimpleType
     {
         public DataTypeKind Kind;
         public object Literal;
 
         public Value(object literal, DataTypeKind kind)
         {
-            this.Literal = literal;
-            this.Kind = kind;
+            Literal = literal;
+            Kind = kind;
         }
 
         public object Emit(Module module)
@@ -31,8 +26,7 @@ namespace SimpleIR.SimpleTypes
                     if (!(Literal is SimpleType))
                         return LLVM.BuildGlobalStringPtr(module.llvm_backend.builder,
                             Literal.ToString(), "SimpleIR_String");
-                    else
-                        return ((SimpleType)Literal).Emit(module);
+                    return ((SimpleType)Literal).Emit(module);
                 }
             }
 

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleIR.SimpleTypes
+﻿namespace SimpleIR.SimpleTypes
 {
-    interface SimpleStatementType
+    internal interface SimpleStatementType
     {
         object Emit(Module module);
     }
-    interface SimpleType
+
+    internal interface SimpleType
     {
         object Emit(Module module);
     }
