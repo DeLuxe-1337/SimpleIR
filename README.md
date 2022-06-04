@@ -6,7 +6,7 @@ I will make a documentation as I progress with this fun little project.
 Hello world example:
 
 ```csharp
-odule module = new Module("HelloWorld");
+Module module = new Module("HelloWorld");
 var IR = module.IR;
 
 var main = IR.CreateFunction("main", IR.GetDataType(DataTypeKind.Void));
