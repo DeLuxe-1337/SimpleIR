@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using LLVMSharp;
+﻿using LLVMSharp;
 using SimpleIR.SimpleTypes;
 using SimpleIR.SimpleTypes.Expression;
 using SimpleIR.SimpleTypes.Statement;
+using System.Linq;
 
 namespace SimpleIR
 {

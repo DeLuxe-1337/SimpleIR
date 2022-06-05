@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using LLVMSharp;
+﻿using LLVMSharp;
+using System.Collections.Generic;
 
 namespace SimpleIR.SimpleTypes.Statement
 {
     internal class Function : SimpleStatementType
     {
-        private readonly List<Block> Body = new List<Block>();
-        private readonly Module module;
         public List<SimpleType> Arguments;
+        private readonly List<Block> Body = new List<Block>();
         public LLVMValueRef function;
+        private readonly Module module;
         public string Name;
         public SimpleType ReturnType;
 

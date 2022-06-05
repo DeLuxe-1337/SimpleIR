@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using SimpleIR.SimpleTypes;
+﻿using SimpleIR.SimpleTypes;
 using SimpleIR.SimpleTypes.Expression;
+using System;
+using System.Collections.Generic;
 
 namespace SimpleIR
 {
@@ -13,16 +13,20 @@ namespace SimpleIR
             var IR = module.IR;
 
             var main = IR.CreateFunction("main", IR.GetDataType(DataTypeKind.Void));
-            var printf = IR.CreateFunction("printf", IR.GetDataType(DataTypeKind.Number),
-                IR.GetDataType(DataTypeKind.String));
 
             var invoke = IR.CreateBlock("invoke");
             main.InsertBlock(invoke);
 
+            var printf = IR.CreateFunction("printf", IR.GetDataType(DataTypeKind.Number),
+                IR.GetDataType(DataTypeKind.String));
             invoke.CreateCall(printf, new List<SimpleType>
             {
                 IR.CreateValue("Hello, world\n", DataTypeKind.String)
             });
+
+            //prevent console from closing
+            var gets = IR.CreateFunction("gets", IR.GetDataType(DataTypeKind.String));
+            invoke.CreateCall(gets, new List<SimpleType>());
 
             invoke.CreateReturn();
 
