@@ -2,7 +2,6 @@
 using SimpleIR.SimpleTypes;
 using SimpleIR.SimpleTypes.Expression;
 using SimpleIR.SimpleTypes.Statement;
-using System;
 using System.Linq;
 
 namespace SimpleIR
@@ -42,27 +41,7 @@ namespace SimpleIR
         }
         public Value CreateValueAuto(object value)
         {
-            DataTypeKind kind = DataTypeKind.Null;
-
-            var type = value.GetType();
-
-            if (type == typeof(string))
-                kind = DataTypeKind.String;
-            if (type == typeof(bool))
-                kind = DataTypeKind.Boolean;
-            if (type == typeof(Int32))
-                kind = DataTypeKind.Int32;
-            if (type == typeof(Int64))
-                kind = DataTypeKind.Int64;
-            if (type == typeof(Int16))
-                kind = DataTypeKind.Int16;
-            if (type == typeof(int))
-                kind = DataTypeKind.Int32;
-            if (type == typeof(float))
-                kind = DataTypeKind.Float;
-
-
-            return new Value(value, kind);
+            return new Value(value, DataType.GetKindFromType(value));
         }
     }
 }
