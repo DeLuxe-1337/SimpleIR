@@ -9,6 +9,7 @@ namespace SimpleIR.SimpleTypes.Expression
         Number,
         String,
         Boolean,
+        Null,
 
         Int32,
         Float,
@@ -57,6 +58,7 @@ namespace SimpleIR.SimpleTypes.Expression
                     {
                         return LLVM.FP128Type();
                     }
+                case DataTypeKind.Null:
                 case DataTypeKind.Int1:
                 case DataTypeKind.Boolean:
                     {

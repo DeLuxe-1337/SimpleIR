@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8E4E07E6-0F9D-496E-B1D0-B67C57915E16}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>SimpleIR</RootNamespace>
     <AssemblyName>SimpleIR</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
