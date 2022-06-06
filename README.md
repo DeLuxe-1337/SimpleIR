@@ -1,6 +1,8 @@
 # SimpleIR
 This is my WIP project for my programming language. 
 
+NuGet Package: https://www.nuget.org/packages/SimpleIR
+
 SimpleIR allows for easy low-level code generation which can then be compiled to a PE.
 
 I will make a documentation as I progress with this fun little project.
