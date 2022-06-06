@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace SimpleIR
 {
-    internal class IR
+    public class IR
     {
         private readonly Module module;
 

@@ -2,7 +2,7 @@
 
 namespace SimpleIR
 {
-    internal class Module
+    public class Module
     {
         public IR IR;
         public SimpleLLVM llvm_backend;

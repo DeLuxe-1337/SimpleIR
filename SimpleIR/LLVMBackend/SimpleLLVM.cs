@@ -5,7 +5,7 @@ using System.IO;
 
 namespace SimpleIR.LLVMBackend
 {
-    internal class SimpleLLVM
+    public class SimpleLLVM
     {
         public LLVMBuilderRef builder;
         public LLVMModuleRef module;

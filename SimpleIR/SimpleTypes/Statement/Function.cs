@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SimpleIR.SimpleTypes.Statement
 {
-    internal class Function : SimpleStatementType
+    public class Function : SimpleStatementType
     {
         public List<SimpleType> Arguments;
         private readonly List<Block> Body = new List<Block>();

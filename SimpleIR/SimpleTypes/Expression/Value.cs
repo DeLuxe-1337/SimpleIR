@@ -3,7 +3,7 @@ using LLVMSharp;
 
 namespace SimpleIR.SimpleTypes.Expression
 {
-    internal class Value : SimpleType
+    public class Value : SimpleType
     {
         public DataTypeKind Kind;
         public object Literal;

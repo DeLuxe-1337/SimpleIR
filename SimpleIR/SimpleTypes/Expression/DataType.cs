@@ -3,7 +3,7 @@ using System;
 
 namespace SimpleIR.SimpleTypes.Expression
 {
-    internal enum DataTypeKind
+    public enum DataTypeKind
     {
         Void,
         Number,
@@ -20,7 +20,7 @@ namespace SimpleIR.SimpleTypes.Expression
         IntPtr,
     }
 
-    internal class DataType : SimpleType
+    public class DataType : SimpleType
     {
         public DataTypeKind Kind;
 

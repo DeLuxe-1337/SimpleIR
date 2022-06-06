@@ -1,11 +1,11 @@
 ﻿namespace SimpleIR.SimpleTypes
 {
-    internal interface SimpleStatementType
+    public interface SimpleStatementType
     {
         object Emit(Module module);
     }
 
-    internal interface SimpleType
+    public interface SimpleType
     {
         object Emit(Module module);
     }

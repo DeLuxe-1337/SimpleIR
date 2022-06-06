@@ -2,7 +2,7 @@
 
 namespace SimpleIR.SimpleTypes.Expression
 {
-    internal class Call : SimpleType
+    public class Call : SimpleType
     {
         public LLVMValueRef llvm_result;
 

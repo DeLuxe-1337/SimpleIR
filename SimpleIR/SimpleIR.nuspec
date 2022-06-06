@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.1</version>
+    <title>SimpleIR</title>
+    <authors>DeLuxe</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/DeLuxe-1337/SimpleIR</projectUrl>
+    <description>SimpleIR allows for easy low-level code generation!</description>
+    <releaseNotes>Test release.</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>IR CSHARP SIMPLEIR</tags>
+  </metadata>
+</package>

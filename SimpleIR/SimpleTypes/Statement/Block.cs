@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SimpleIR.SimpleTypes.Statement
 {
-    internal class Block : SimpleStatementType
+    public class Block : SimpleStatementType
     {
         public LLVMValueRef _block;
         public LLVMValueRef _ParentFunction;
