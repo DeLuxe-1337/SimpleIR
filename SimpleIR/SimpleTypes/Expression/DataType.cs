@@ -84,26 +84,24 @@ namespace SimpleIR.SimpleTypes.Expression
 
         public static DataTypeKind GetKindFromType(object value)
         {
-            var kind = DataTypeKind.Null;
-
             var type = value.GetType();
 
             if (type == typeof(string))
-                kind = DataTypeKind.String;
+                return DataTypeKind.String;
             if (type == typeof(bool))
-                kind = DataTypeKind.Boolean;
+                return DataTypeKind.Boolean;
             if (type == typeof(int))
-                kind = DataTypeKind.Int32;
+                return DataTypeKind.Int32;
             if (type == typeof(long))
-                kind = DataTypeKind.Int64;
+                return DataTypeKind.Int64;
             if (type == typeof(short))
-                kind = DataTypeKind.Int16;
+                return DataTypeKind.Int16;
             if (type == typeof(int))
-                kind = DataTypeKind.Int32;
+                return DataTypeKind.Int32;
             if (type == typeof(float))
-                kind = DataTypeKind.Float;
+                return DataTypeKind.Float;
 
-            return kind;
+            return DataTypeKind.Null;
         }
     }
 }
