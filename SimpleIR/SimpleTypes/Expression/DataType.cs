@@ -23,29 +23,6 @@ namespace SimpleIR.SimpleTypes.Expression
 
     public class DataType : SimpleType
     {
-        public static DataTypeKind GetKindFromType(object value)
-        {
-            DataTypeKind kind = DataTypeKind.Null;
-
-            var type = value.GetType();
-
-            if (type == typeof(string))
-                kind = DataTypeKind.String;
-            if (type == typeof(bool))
-                kind = DataTypeKind.Boolean;
-            if (type == typeof(Int32))
-                kind = DataTypeKind.Int32;
-            if (type == typeof(Int64))
-                kind = DataTypeKind.Int64;
-            if (type == typeof(Int16))
-                kind = DataTypeKind.Int16;
-            if (type == typeof(int))
-                kind = DataTypeKind.Int32;
-            if (type == typeof(float))
-                kind = DataTypeKind.Float;
-
-            return kind;
-        }
         public DataTypeKind Kind;
 
         public DataType(DataTypeKind kind)
@@ -103,6 +80,30 @@ namespace SimpleIR.SimpleTypes.Expression
             }
 
             return null;
+        }
+
+        public static DataTypeKind GetKindFromType(object value)
+        {
+            var kind = DataTypeKind.Null;
+
+            var type = value.GetType();
+
+            if (type == typeof(string))
+                kind = DataTypeKind.String;
+            if (type == typeof(bool))
+                kind = DataTypeKind.Boolean;
+            if (type == typeof(int))
+                kind = DataTypeKind.Int32;
+            if (type == typeof(long))
+                kind = DataTypeKind.Int64;
+            if (type == typeof(short))
+                kind = DataTypeKind.Int16;
+            if (type == typeof(int))
+                kind = DataTypeKind.Int32;
+            if (type == typeof(float))
+                kind = DataTypeKind.Float;
+
+            return kind;
         }
     }
 }

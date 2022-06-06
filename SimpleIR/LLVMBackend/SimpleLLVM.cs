@@ -1,7 +1,7 @@
-﻿using LLVMSharp;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
+using LLVMSharp;
 
 namespace SimpleIR.LLVMBackend
 {
@@ -36,9 +36,7 @@ namespace SimpleIR.LLVMBackend
             var options = new LLVMMCJITCompilerOptions { NoFramePointerElim = 1 };
             LLVM.InitializeMCJITCompilerOptions(options);
             if (LLVM.CreateExecutionEngineForModule(out var engine, module, out var errorMessage).Value == 1)
-            {
                 Console.WriteLine(errorMessage);
-            }
         }
 
         public void Finish()
@@ -61,9 +59,10 @@ namespace SimpleIR.LLVMBackend
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Please wait for the compiler to be officially released...");
                 Console.ResetColor();
-                
+
                 return;
             }
+
             Process.Start("WSL-COMPILE.exe");
         }
     }

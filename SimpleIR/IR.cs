@@ -39,6 +39,7 @@ namespace SimpleIR
         {
             return new Value(value, kind);
         }
+
         public Value CreateValueAuto(object value)
         {
             return new Value(value, DataType.GetKindFromType(value));
