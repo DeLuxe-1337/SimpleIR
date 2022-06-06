@@ -26,9 +26,11 @@ function string gets()
 
 //functions
 function void main() {
-  #tempcall = call [printf, int32, {SimpleIR_String}]
-  #tempcall.1 = call [gets, string]
-  return
+    on_invoke {
+        call [printf, int32, {SimpleIR_String}]
+        call [gets, string]
+        return
+    }
 }
 
  */
