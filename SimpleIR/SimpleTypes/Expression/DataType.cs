@@ -18,7 +18,7 @@ namespace SimpleIR.SimpleTypes.Expression
         Int64,
         Int8,
         Int1,
-        IntPtr,
+        IntPtr
     }
 
     public class DataType : SimpleType

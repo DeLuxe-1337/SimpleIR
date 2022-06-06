@@ -1,14 +1,14 @@
-﻿using LLVMSharp;
+﻿using System.Collections.Generic;
+using LLVMSharp;
 using SimpleIR.SimpleTypes.Expression;
-using System.Collections.Generic;
 
 namespace SimpleIR.SimpleTypes.Statement
 {
     public class Block : SimpleStatementType
     {
+        private readonly Module module;
         public LLVMValueRef _block;
         public LLVMValueRef _ParentFunction;
-        private readonly Module module;
         public string Name;
 
         public Block(string name, Module module)
