@@ -21,7 +21,7 @@ namespace SimpleIR
                 IR.GetDataType(DataTypeKind.String));
             invoke.CreateCall(printf, new List<SimpleType>
             {
-                IR.CreateValueAuto("Hello, world\nwww.get_hoes.com\n")
+                IR.CreateValueAuto("Hello, world\n")
             });
 
             //prevent console from closing
