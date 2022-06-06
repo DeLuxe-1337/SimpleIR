@@ -1,7 +1,7 @@
-﻿using System;
+﻿using LLVMSharp;
+using System;
 using System.Diagnostics;
 using System.IO;
-using LLVMSharp;
 
 namespace SimpleIR.LLVMBackend
 {
@@ -24,12 +24,12 @@ namespace SimpleIR.LLVMBackend
             LLVM.InitializeFunctionPassManager(passManager);
 
             LLVM.LinkInMCJIT();
-            LLVM.InitializeX86TargetInfo();
-            LLVM.InitializeX86Target();
-            LLVM.InitializeX86TargetMC();
+            //LLVM.InitializeX86TargetInfo();
+            //LLVM.InitializeX86Target();
+            //LLVM.InitializeX86TargetMC();
 
-            LLVM.InitializeX86AsmParser();
-            LLVM.InitializeX86AsmPrinter();
+            //LLVM.InitializeX86AsmParser();
+            //LLVM.InitializeX86AsmPrinter();
 
             LLVM.SetTarget(module, target_triple);
 
