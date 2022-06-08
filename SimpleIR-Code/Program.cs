@@ -29,30 +29,3 @@ namespace SimpleIR_Code
         }
     }
 }
-
-
-/*
-
-//SimpleIR Code
-
-//headers
-module = "HelloWorld"
-target = "i686-pc-windows-gnu"
-
-//constants
-string SimpleIR_String = "Hello, world\n"
-
-//declarations
-function int32 printf(string)
-function string gets()
-
-//functions
-function void main() {
-    block on_invoke {
-        call [printf, int32, {SimpleIR_String}]
-        call [gets, string]
-        return
-    }
-}
-
- */
