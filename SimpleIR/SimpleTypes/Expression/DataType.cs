@@ -82,6 +82,14 @@ namespace SimpleIR.SimpleTypes.Expression
             return null;
         }
 
+        public static bool Compare(DataTypeKind left, DataTypeKind right)
+        {
+            if ((left == DataTypeKind.Int32 || right == DataTypeKind.Int32) &&
+                (left == DataTypeKind.Number || right == DataTypeKind.Number))
+                return true;
+
+            return left == right;
+        }
         public static DataTypeKind GetKindFromType(object value)
         {
             var type = value.GetType();

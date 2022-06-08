@@ -43,10 +43,18 @@ namespace SimpleIR.SimpleTypes.Statement
         public Call CreateCall(Function function, List<SimpleType> arguments)
         {
             var args = new List<LLVMValueRef>();
-            foreach (var argument in arguments) args.Add((LLVMValueRef)argument.Emit(module));
+            foreach (var argument in arguments)
+                args.Add((LLVMValueRef)argument.Emit(module));
 
-            var result = LLVM.BuildCall(module.llvm_backend.builder, function.function, args.ToArray(),
-                "call_to_" + function.Name);
+            LLVMValueRef result;
+
+            if (((DataType)function.ReturnType).Kind != DataTypeKind.Void)
+                result = LLVM.BuildCall(module.llvm_backend.builder, function.function, args.ToArray(),
+                    "call_to_" + function.Name);
+            else
+                result = LLVM.BuildCall(module.llvm_backend.builder, function.function, args.ToArray(),
+                    "");
+
             return new Call(result);
         }
     }
