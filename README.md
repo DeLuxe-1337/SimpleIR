@@ -92,8 +92,9 @@ L_SimpleIR_String:                      # @SimpleIR_String
 <details>
 <summary>SimpleIR Code progress!</summary>
 <br>
-Example IR code can look like: 
-```assembly
+Example IR code looks look like: 
+```
+
 //SimpleIR Code
 
 //headers
