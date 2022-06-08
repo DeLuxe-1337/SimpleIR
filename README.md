@@ -89,12 +89,12 @@ L_SimpleIR_String:                      # @SimpleIR_String
 </details>
 </details>
 
-	<details>
+<details>
 <summary>SimpleIR Code progress!</summary>
 <br>
-		Example IR code can look like: 
-		```assembly
-		//SimpleIR Code
+Example IR code can look like: 
+```assembly
+//SimpleIR Code
 
 //headers
 module = "HelloWorld"
@@ -114,10 +114,10 @@ function void main() {
         call [gets, string]
         return
     }
-}```
+}
+```
 		
-	The compiler has a cool error handler (not complete) also it is indeed rust inspired.
-	![image](https://user-images.githubusercontent.com/74394136/172590316-d39b2697-60d6-45ff-99d4-4b89df205109.png)
+The compiler has a cool error handler (not complete) also it is indeed rust inspired.
+![image](https://user-images.githubusercontent.com/74394136/172590316-d39b2697-60d6-45ff-99d4-4b89df205109.png)
 
-		
-	</details>
+</details>
