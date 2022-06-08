@@ -92,7 +92,8 @@ L_SimpleIR_String:                      # @SimpleIR_String
 <details>
 <summary>SimpleIR Code progress!</summary>
 <br>
-Example IR code looks look like: 
+Example IR code looks look like
+	
 ```
 
 //SimpleIR Code
