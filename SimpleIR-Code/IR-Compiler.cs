@@ -1,10 +1,12 @@
-﻿using SimpleIR;
+﻿using SimpleErrorPresenter;
+using SimpleIR;
 using SimpleIR.SimpleTypes;
 using SimpleIR.SimpleTypes.Expression;
 using SimpleIR.SimpleTypes.Statement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SimpleIR_Code
 {
@@ -12,8 +14,8 @@ namespace SimpleIR_Code
     {
         private readonly Stack<Block> blockStack = new Stack<Block>();
         private readonly Dictionary<string, object> env = new Dictionary<string, object>();
-        public bool Error;
         private readonly Stack<Function> functionStack = new Stack<Function>();
+        public bool Error;
         public IR IR;
         public Module module = new Module("SimpleIR");
 
@@ -22,36 +24,25 @@ namespace SimpleIR_Code
             IR = module.IR;
         }
 
-        private void CompileError(string result, string message, int where, int error_length)
+        private void CheckForHeaders(string target)
         {
-            var where_str = new string(' ', where);
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("COMPILE ERROR!!\n");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"{result}");
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine($"{where_str}{new string('^', error_length)}");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"{where_str}{message}\n");
-
-            Console.ResetColor();
-
-            Error = true;
-        }
-
-        private void CheckForHeaders()
-        {
-            if (env.ContainsKey("module"))
+            switch (target)
             {
-                module = new Module(((Value)env["module"]).Literal.ToString());
-                IR = module.IR;
+                case "target":
+                    SimpleError.Warning("WARN!<target> = ", "Target isn't implemented yet.");
+                    return;
+                case "module":
+                    module = new Module(((Value)env["module"]).Literal.ToString());
+                    IR = module.IR;
+                    return;
             }
         }
 
         public override object VisitConstant(SimpleIRParser.ConstantContext context)
         {
             if (context.STRING() != null)
-                return IR.CreateValue(context.STRING().GetText().TrimEnd('"').TrimStart('"'), DataTypeKind.String);
+                return IR.CreateValue(Regex.Unescape(context.STRING().GetText()).TrimEnd('"').TrimStart('"'),
+                    DataTypeKind.String);
 
             if (context.NUMBER() != null)
                 return IR.CreateValue(int.Parse(context.NUMBER().GetText()), DataTypeKind.Int32);
@@ -81,7 +72,7 @@ namespace SimpleIR_Code
 
             env[name] = assignTo;
 
-            CheckForHeaders();
+            CheckForHeaders(name);
             return null;
         }
 
@@ -99,8 +90,9 @@ namespace SimpleIR_Code
             {
                 var typ_str = context.expression(0).GetText();
                 var assign_str = context.expression(1).GetText();
-                CompileError($"{typ_str} {name} = {assign_str}",
-                    $"Try changing this type to {((Value)assignTo).Kind.ToString().ToLower()}.", 0, typ_str.Length);
+                SimpleError.Error($"ERROR!<{typ_str}> {name} = {assign_str}",
+                    $"Try changing this type to {((Value)assignTo).Kind.ToString().ToLower()}.");
+                Error = true;
             }
 
             return null;
@@ -197,13 +189,15 @@ namespace SimpleIR_Code
 
                     if (!DataType.Compare(retType.Kind, value.Kind))
                     {
-                        var function_build = $"-> function {retType.Kind.ToString().ToLower()} {f.Name}()\n";
+                        var function_build = $"-> function {retType.Kind.ToString().ToLower()} {f.Name}()";
 
                         var ret_build = "return ";
                         var ret_val_text = context.expression().GetText();
-                        CompileError($"{function_build}{ret_build}{ret_val_text}",
-                            $"Try changing this type to {retType.Kind.ToString().ToLower()}.", ret_build.Length,
-                            ret_val_text.Length);
+
+                        SimpleError.ErrorWithText(function_build, $"{ret_build}ERROR!<{ret_val_text}>",
+                            $"Try changing this type to {retType.Kind.ToString().ToLower()}.");
+
+                        Error = true;
                     }
                 }
 

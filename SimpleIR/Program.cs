@@ -1,7 +1,7 @@
-﻿using SimpleIR.SimpleTypes;
-using SimpleIR.SimpleTypes.Expression;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using SimpleIR.SimpleTypes;
+using SimpleIR.SimpleTypes.Expression;
 
 namespace SimpleIR
 {
