@@ -10,9 +10,12 @@ namespace SimpleIR_Code_Builder
         public StringBuilder build = new StringBuilder();
         public List<Type> types = new List<Type>();
 
-        public void CreateVariable(string name, object data, DataType.DataTypeKind kind = DataType.DataTypeKind.Void)
+        public Variable CreateVariable(string name, object data, DataType.DataTypeKind kind = DataType.DataTypeKind.Void)
         {
-            types.Add(new Variable(name, data, kind));
+            var v = new Variable(name, data, kind);
+            types.Add(v);
+
+            return v;
         }
 
         public Function CreateFunction(string name, DataType.DataTypeKind returnKind,
@@ -28,6 +31,9 @@ namespace SimpleIR_Code_Builder
 
         public static string ConvertData(object data)
         {
+            if (data is Type)
+                return ((Type)data).ExpressionString();
+
             if (data is DataType.DataTypeKind)
                 return DataType.DataTypeKindToString((DataType.DataTypeKind)data);
 
